@@ -1,0 +1,14 @@
+MATEDESK PRO v0.2 — MULAI DI SINI
+
+Coba antarmuka di laptop:
+  1) Ekstrak ZIP
+  2) Klik dua kali Jalankan_MateDesk_Preview.command (macOS)
+  3) Browser akan membuka MateDesk
+
+Build APK Android:
+  1) Install Android Studio dan Android SDK Platform 35
+  2) Buka folder android-project di Android Studio
+  3) Build > Build Bundle(s) / APK(s) > Build APK(s)
+
+PENTING: Paket ini belum berisi APK yang sudah di-build. HTML preview bisa langsung dicoba di laptop; source Android perlu dibangun dengan Android SDK di komputer lokal.
+Lihat README_ID.md untuk detail.
