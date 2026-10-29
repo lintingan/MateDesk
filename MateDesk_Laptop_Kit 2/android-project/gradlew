@@ -1,0 +1,19 @@
+#!/bin/sh
+# MateDesk bootstrap runner. Downloads a pinned Gradle distribution if absent.
+set -eu
+VERSION="8.9"
+CACHE_ROOT="${MATEDESK_GRADLE_CACHE:-$HOME/.cache/matedesk-gradle}"
+GRADLE_HOME="$CACHE_ROOT/gradle-$VERSION"
+if [ ! -x "$GRADLE_HOME/bin/gradle" ]; then
+  mkdir -p "$CACHE_ROOT"
+  ZIP="$CACHE_ROOT/gradle-$VERSION-bin.zip"
+  echo "Gradle $VERSION belum tersedia; mengunduh distribusi resmi..."
+  if ! command -v curl >/dev/null 2>&1 || ! command -v unzip >/dev/null 2>&1; then
+    echo "Diperlukan curl dan unzip untuk bootstrap Gradle." >&2
+    exit 1
+  fi
+  curl -fL --retry 2 --connect-timeout 20 -o "$ZIP" "https://services.gradle.org/distributions/gradle-$VERSION-bin.zip"
+  unzip -q -o "$ZIP" -d "$CACHE_ROOT"
+  rm -f "$ZIP"
+fi
+exec "$GRADLE_HOME/bin/gradle" "$@"
